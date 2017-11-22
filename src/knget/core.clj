@@ -14,6 +14,7 @@
   (let [t (-> title
 	      (clojure.string/replace #"[',:;!?]" "")
 	      (clojure.string/replace "&" "and")
+	      (clojure.string/replace "/" "_")
 	      (clojure.string/replace " " "_"))]
     (if (= (count episode) 0)
       t
