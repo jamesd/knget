@@ -12,7 +12,7 @@
   season may be empty strings."
   [title season episode]
   (let [t (-> title
-	      (clojure.string/replace #"[',:;!?]" "")
+	      (clojure.string/replace #"['.,:;!?]" "")
 	      (clojure.string/replace "&" "and")
 	      (clojure.string/replace "/" "_")
 	      (clojure.string/replace " " "_"))]
