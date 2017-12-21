@@ -4,7 +4,15 @@
   (:use [clojure.walk :as walk])
   (:require [pl.danieljanus.tagsoup :as ts]
 	    [clojure.java.io :as io]
+	    [clojure.tools.cli :refer [parse-opts]]
 	    [me.raynes.conch :refer [programs with-programs let-programs] :as sh]))
+
+(def cli-options
+  [["-m" "--map MAP" "Title mapping"
+    :default {}
+    :parse-fn #(eval (read-string %))
+    :validate [#(map? %) "Must be a valid clojure hashmap"]
+    ]])
 
 (defn mkbasename
   "Create a name based on the title, season number, and episode number
@@ -23,8 +31,14 @@
 	  (format "%s_ep%02d" t e)
 	  (format "%s_s%02de%02d" t (Integer/parseInt season) e))))))
 
-(defn mkvideoname [title season episode]
-  (format "%s.mp4" (mkbasename title season episode)))
+(defn mkvideoname [namemap title season episode]
+  (let [name (format "%s.mp4" (mkbasename title season episode))]
+    (if (nil? namemap)
+      name
+      (let [mapname (namemap name)]
+	(if (nil? mapname)
+	  name
+	  mapname)))))
 
 (defn mkvideourl [code]
   (str "https://content.jwplatform.com/feeds/" code ".json"))
@@ -53,15 +67,15 @@
   [v]
   (video? v 2))
 
-;; TODO: support episode mapping (knowledge's order does not always match thetvdb's order)
-(defn findepisodes [h]
+(defn findepisodes [m h]
   (let [episodes (atom {})
 	collect-video
 	(fn [f]
 	  (fn [x] (if (f x)
 	    (let [episode (second x)]
 	      (swap! episodes assoc
-		     (mkvideoname (episode :data-title)
+		     (mkvideoname m
+				  (episode :data-title)
 				  (episode :x-tracking-season)
 				  (episode :x-tracking-epnum))
 		     (mkvideourl (episode :data-videoid))))
@@ -106,10 +120,12 @@
 	(spit name (mkoutput k (m k)))))))
 
 (defn -main [& args]
-  (if (= (count args) 0)
-    (println "Must specify a knowledge.ca URL")
-    (doseq [arg args]
-      (->> arg
-	   (ts/parse)
-	   (findepisodes)
-	   (mkmakefiles)))))
+  (let [options (parse-opts args cli-options)
+	urls (options :arguments)]
+    (if (= (count urls) 0)
+      (println "Must specify a knowledge.ca URL")
+      (doseq [url urls]
+	(->> url
+	     (ts/parse)
+	     (findepisodes ((options :options) :map))
+	     (mkmakefiles))))))

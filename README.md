@@ -75,6 +75,76 @@ A re-run of make (e.g, via `cron`) will create new makefile snippets for
 episodes that were not previously available and only the new episodes
 will be downloaded.
 
+If the episode list does not match up with [The TV DB](https://thetvdb.com), you
+can specify an episode rename map:
+
+```make
+# https://www.thetvdb.com/?tab=seasonall&id=250675&lid=7
+
+URLS := "https://www.knowledge.ca/program/waterfront-cities-world?season=1" \
+	"https://www.knowledge.ca/program/waterfront-cities-world?season=2" \
+	"https://www.knowledge.ca/program/waterfront-cities-world?season=3" \
+	"https://www.knowledge.ca/program/waterfront-cities-world?season=4" \
+	"https://www.knowledge.ca/program/waterfront-cities-world?season=5"
+
+MAP := '{ \
+	"Helsinki_s01e01.mp4" "Helsinki_s01e05.mp4" \
+	"Havana_s01e03.mp4" "Havana_s01e09.mp4" \
+	"Lisbon_s01e04.mp4" "Lisbon_s01e13.mp4" \
+	"Tel_Aviv_s01e05.mp4" "Tel_Aviv_s01e03.mp4" \
+	"Bangkok_s01e06.mp4" "Bangkok_s01e04.mp4" \
+	"Buenos_Aires_s01e07.mp4" "Buenos_Aires_s01e12.mp4" \
+	"Melbourne_s01e08.mp4" "Melbourne_s01e06.mp4" \
+	"Houston_s01e09.mp4" "Houston_s01e07.mp4" \
+	"Reykjavik_s01e10.mp4" "Reykjavik_s01e08.mp4" \
+	"San_Francisco_s01e11.mp4" "San_Francisco_s01e01.mp4" \
+	"Marseille_s01e12.mp4" "Marseille_s01e11.mp4" \
+	"Moscow_s01e13.mp4" "Moscow_s01e10.mp4" \
+	\
+	"Singapore_s02e01.mp4" "Singapore_s02e02.mp4" \
+	"Venice_s02e02.mp4" "Venice_s02e01.mp4" \
+	"Panama_City_s02e03.mp4" "Panama_City_s02e11.mp4" \
+	"Boston_s02e04.mp4" "Boston_s02e09.mp4" \
+	"Tokyo_s02e05.mp4" "Tokyo_s02e13.mp4" \
+	"Valencia_s02e08.mp4" "Valencia_s02e04.mp4" \
+	"Saint_Petersburg_s02e09.mp4" "Saint_Petersburg_s02e08.mp4" \
+	"Istanbul_s02e10.mp4" "Istanbul_s02e03.mp4" \
+	"Salvador_de_Bahia_s02e11.mp4" "Salvador_de_Bahia_s02e10.mp4" \
+	"Vancouver_s02e13.mp4" "Vancouver_s02e05.mp4" \
+	\
+	"Honolulu_s03e02.mp4" "Honolulu_s03e12.mp4" \
+	"Doha_s03e03.mp4" "Doha_s03e10.mp4" \
+	"Naples_s03e04.mp4" "Naples_s03e05.mp4" \
+	"Miami_s03e05.mp4" "Miami_s03e08.mp4" \
+	"Lima_s03e06.mp4" "Lima_s03e11.mp4" \
+	"Ho_Chi_Minh_City_s03e07.mp4" "Ho_Chi_Minh_City_s03e13.mp4" \
+	"Hamburg_s03e08.mp4" "Hamburg_s03e03.mp4" \
+	"Riga_s03e10.mp4" "Riga_s03e07.mp4" \
+	"London_s03e11.mp4" "London_s03e04.mp4" \
+	"Barcelona_s03e12.mp4" "Barcelona_s03e06.mp4" \
+	"New_York_City_s03e13.mp4" "New_York_City_s03e02.mp4" \
+	\
+	"Oslo_s04e04.mp4" "Oslo_s04e05.mp4" \
+	"Dublin_s04e05.mp4" "Dublin_s04e04.mp4" \
+	"Seoul_s04e06.mp4" "Seoul_s04e08.mp4" \
+	"Los_Angeles_s04e07.mp4" "Los_Angeles_s04e12.mp4" \
+	"Auckland_s04e08.mp4" "Auckland_s04e11.mp4" \
+	"Cartegena_s04e09.mp4" "Cartegena_s04e07.mp4" \
+	"Rio_de_Janeiro_s04e10.mp4" "Rio_de_Janeiro_s04e13.mp4" \
+	"Mumbai_s04e11.mp4" "Mumbai_s04e09.mp4" \
+	"Shanghai_Part_1_s04e12.mp4" "Shanghai_1_International_City_s04e06.mp4" \
+	"Shanghai_Part_2_s04e13.mp4" "Shanghai_2_City_of_Opportunities_s04e10.mp4" \
+	}'
+
+_all: update
+	@$(MAKE) --no-print-directory all
+
+update:
+	knget -m $(MAP) $(URLS)
+
+-include *.mak
+```
+
 ## License
 
 Copyright © 2017 James Davidson
