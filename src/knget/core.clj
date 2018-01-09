@@ -49,13 +49,19 @@
   (and (vector? v)
        (keyword? (first v))))
 
+(defn videoid?
+  "Has a non-empty videoid"
+  [v]
+  (and (contains? v :data-videoid)
+       (pos? (count (v :data-videoid)))))
+
 (defn video?
   "Determines if specified vector represents a video."
   [v n]
   (and (key-value? v)
        (= (count v) n) ; 4 for episode list, 2 for single show
        (= :a (first v))
-       (contains? (second v) :data-videoid)))
+       (videoid? (second v))))
 
 (defn episode?
   "Determines if specified vector represents an episode."
