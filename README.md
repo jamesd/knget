@@ -27,7 +27,10 @@ details I find easier:
 
 ### Options
 
-The only options for `knget` is a list of URLs.
+There is only one optional parameter for mapping show names so you can
+provide a clojure map to get the show name you desire from the show name
+specified by Knowledge Network ([see Examples](#Examples) for
+usage). Otherwise, only a list of URLs to examine is required.
 
 ## Examples
 
