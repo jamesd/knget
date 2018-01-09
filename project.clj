@@ -1,4 +1,4 @@
-(defproject knget "0.2.0"
+(defproject knget "0.2.1"
   :description "Get video codes from knowledge.ca pages"
   :url "https://github.com/jamesd/knget"
   :license {:name "Eclipse Public License"
