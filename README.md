@@ -1,4 +1,6 @@
 # knget
+[![Version](https://img.shields.io/badge/Version-0.2.0-blue.svg?style=flat)](https://github.com/jamesd/knget/releases)
+[![License](http://img.shields.io/badge/license-EPL-blue.svg?style=flat)](https://www.eclipse.org/legal/epl-v10.html)
 
 A simple utility to capture video codes from
 [Knowledge Network](https://knowledge.ca) show URLs into makefile
@@ -16,14 +18,14 @@ Simply run the standalone jar file and provide Knowledge Network URL(s)
 with videos you want to capture in makefile snippets
 ([see Examples](#Examples)).
 
-    $ java -jar knget-0.1.0-standalone.jar [url...]
+    $ java -jar knget-0.2.0-standalone.jar [url...]
 
 Creating a shell wrapper in your PATH to hide the java invocation
 details I find easier:
 
 	$ cat ~/bin/knget
 	#!/bin/bash
-	exec java -jar /path/to/jar/knget-0.1.0-standalone.jar "$@"
+	exec java -jar /path/to/jar/knget-0.2.0-standalone.jar "$@"
 
 ### Options
 
