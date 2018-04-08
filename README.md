@@ -1,6 +1,6 @@
 # knget
 [![Build Status](https://travis-ci.org/jamesd/knget.svg?branch=master)](https://travis-ci.org/jamesd/knget)
-[![Version](https://img.shields.io/badge/Version-0.2.1-blue.svg?style=flat)](https://github.com/jamesd/knget/releases)
+[![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?style=flat)](https://github.com/jamesd/knget/releases)
 [![License](http://img.shields.io/badge/license-EPL-blue.svg?style=flat)](https://www.eclipse.org/legal/epl-v10.html)
 
 A simple utility to capture video codes from
@@ -22,14 +22,14 @@ Simply run the standalone jar file and provide Knowledge Network URL(s)
 with videos you want to capture in makefile snippets
 ([see Examples](#Examples)).
 
-    $ java -jar knget-0.2.1-standalone.jar [url...]
+    $ java -jar knget-0.2.2-standalone.jar [url...]
 
 Creating a shell wrapper in your PATH to hide the java invocation
 details I find easier:
 
 	$ cat ~/bin/knget
 	#!/bin/bash
-	exec java -jar /path/to/jar/knget-0.2.1-standalone.jar "$@"
+	exec java -jar /path/to/jar/knget-0.2.2-standalone.jar "$@"
 
 ### Options
 
