@@ -11,7 +11,10 @@ available videos.
 
 ## Installation
 
-Download from https://github.com/jamesd/knget.
+Download from [github.com/jamesd/knget](https://github.com/jamesd/knget)
+and build:
+
+	$ lein uberjar
 
 ## Usage
 
