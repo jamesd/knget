@@ -114,7 +114,7 @@
   (str videoname ".mak"))
 
 (defn mkoutput [name url]
-  (format "all::\t%s\n\n%s:\n\tyoutube-dl -f %d -o $@ \"%s\"\n"
+  (format "all::\t%s\n\n%s:\n\tyoutube-dl -f %d -o \"$@\" \"%s\"\n"
 	  name name (getformat url) url))
 
 (defn mkmakefiles

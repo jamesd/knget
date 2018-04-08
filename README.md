@@ -64,7 +64,7 @@ episodes:
 ```
 $ make
 knget "https://www.knowledge.ca/program/museum-diaries"
-youtube-dl -f 6 -o Fakes_and_Frauds_Exposed_ep01.mp4 "https://content.jwplatform.com/feeds/xtof6VUs.json"
+youtube-dl -f 6 -o "Fakes_and_Frauds_Exposed_ep01.mp4" "https://content.jwplatform.com/feeds/xtof6VUs.json"
 [JWPlatform] xtof6VUs: Downloading JSON metadata
 [JWPlatform] xtof6VUs: Downloading m3u8 information
 [download] Destination: Fakes_and_Frauds_Exposed_ep01.mp4
@@ -77,7 +77,7 @@ The makefile snippet created for the above episode is:
 all::	Fakes_and_Frauds_Exposed_ep01.mp4
 
 Fakes_and_Frauds_Exposed_ep01.mp4:
-	youtube-dl -f 6 -o $@ "https://content.jwplatform.com/feeds/xtof6VUs.json"
+	youtube-dl -f 6 -o "$@" "https://content.jwplatform.com/feeds/xtof6VUs.json"
 ```
 
 A re-run of make (e.g, via `cron`) will create new makefile snippets for
