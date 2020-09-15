@@ -1,5 +1,5 @@
 # knget
-[![Build Status](https://travis-ci.org/jamesd/knget.svg?branch=master)](https://travis-ci.org/jamesd/knget)
+[![Build Status](https://travis-ci.com/jamesd/knget.svg?branch=master)](https://travis-ci.com/jamesd/knget)
 [![Version](https://img.shields.io/badge/Version-0.2.2-blue.svg?style=flat)](https://github.com/jamesd/knget/releases)
 [![License](http://img.shields.io/badge/license-EPL-blue.svg?style=flat)](https://www.eclipse.org/legal/epl-v10.html)
 
